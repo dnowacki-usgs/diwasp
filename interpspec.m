@@ -25,7 +25,7 @@ Hs1=hsig(SMin)
 s1=SMin.freqs(:)*sin(SMin.dirs(:)');c1=SMin.freqs(:)*cos(SMin.dirs(:)');
 s2=SMtmp.freqs(:)*sin(SMtmp.dirs(:)');c2=SMtmp.freqs(:)*cos(SMtmp.dirs(:)');
 
-Stmp=griddata(s1,c1,SMin.S,s2,c2);
+Stmp=griddata(double(s1),double(c1),double(SMin.S),double(s2),double(c2));
 Stmp(isnan(Stmp))=0;
 SMout.S=Stmp/facout;
 
