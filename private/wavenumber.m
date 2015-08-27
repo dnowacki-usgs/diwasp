@@ -19,15 +19,19 @@ b1=1.0./(tanh(a0.^0.75));
 a1=a0.*(b1.^0.666);
 da1=1000.0;
    
+% implement counter for maximum iterations
+n = 1;
+
 d1=ones(size(h));
- while(max(d1)==1)  
- d1 = (abs(da1./a1) > .00000001);
+ while(max(d1)==1 && n <= 20)  
+  d1 = (abs(da1./a1) > .00000001);
 	th=tanh(a1);
 	ch=cosh(a1);
 	f1=a0-(a1.*th);
 	f2= - a1.*((1.0./ch).^2) -th;
 	da1= -f1./f2;
 	a1=a1+da1;
+    n = n+1;
  end
 
 k=a1./h;
